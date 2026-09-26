@@ -1,0 +1,6 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Base.Theme.Cacapie" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">@color/my_primary</item>
+    </style>
+    <style name="Theme.Cacapie" parent="Base.Theme.Cacapie" />
+</resources>

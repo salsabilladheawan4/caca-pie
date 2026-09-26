@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Caca Bakery Corner</string>
+    <string name="btn_my_project">My Project</string>
+    <string name="snack_title">Apple Pie Special</string>
+    <string name="snack_nutrition">Kalori: 270 kkal\nLemak: 12g\nKarbohidrat: 35g\nProtein: 5g</string>
+</resources>
