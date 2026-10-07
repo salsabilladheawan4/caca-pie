@@ -1,6 +1,36 @@
 <resources>
-    <string name="app_name">Caca Bakery Corner</string>
+    <string name="app_name">Jambang</string>
     <string name="btn_my_project">My Project</string>
     <string name="snack_title">Apple Pie Special</string>
     <string name="snack_nutrition">Kalori: 270 kkal\nLemak: 12g\nKarbohidrat: 35g\nProtein: 5g</string>
+
+    <!-- Landing -->
+    <string name="landing_title">Jambang</string>
+    <string name="landing_tagline">Awaken Your Senses with Pure Artisanal Brews</string>
+    <string name="landing_desc">Discover handcrafted coffees curated from the finest beans, roasted to perfection.</string>
+    <string name="btn_see_menu">Lihat Menu</string>
+    <string name="btn_web_view">Kunjungi Website</string>
+
+    <!-- Toolbar titles -->
+    <string name="title_details">Details</string>
+    <string name="title_web">Jambang Space</string>
+    <string name="title_apple_pie">Apple Pie</string>
+
+    <!-- Option menu -->
+    <string name="action_search">Search</string>
+    <string name="action_settings">Settings</string>
+    <string name="toast_search">Search Clicked</string>
+    <string name="toast_settings">Settings Clicked</string>
+
+    <!-- Details -->
+    <string name="product_name">Velvet Cappuccino</string>
+    <string name="product_rating">4.9/5</string>
+    <string name="label_size">Size</string>
+    <string name="label_sugar">Sugar</string>
+    <string name="label_ice">Ice</string>
+    <string name="label_description">Description</string>
+    <string name="product_desc">Indulge in the smooth richness of Velvet Cappuccino, where double-shot espresso meets perfectly steamed velvety milk, crowned with a delicate layer of microfoam. Every sip delivers a harmony of bold coffee flavor and creamy sweetness, crafted fresh by our baristas for a truly blissful moment.</string>
+    <string name="product_price">$20.99</string>
+    <string name="btn_add_to_cart">Add to Cart</string>
+    <string name="logo_desc">Logo Jambang</string>
 </resources>

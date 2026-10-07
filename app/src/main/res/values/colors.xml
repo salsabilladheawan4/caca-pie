@@ -1,5 +1,14 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="my_primary">#D35400</color>
+    <color name="my_primary">#F5922B</color>
+
+    <!-- Jambang palette -->
+    <color name="jambang_orange">#F5922B</color>
+    <color name="jambang_caramel">#C87941</color>
+    <color name="jambang_brown">#3B2314</color>
+    <color name="jambang_cream">#FFF6EC</color>
+    <color name="jambang_chip">#FDEBD8</color>
+    <color name="jambang_text_secondary">#8A7566</color>
+    <color name="jambang_glass">#B3261A12</color>
 </resources>
