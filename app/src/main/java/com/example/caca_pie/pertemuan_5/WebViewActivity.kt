@@ -30,6 +30,7 @@ class WebViewActivity : AppCompatActivity() {
 
         binding.webView.webViewClient = WebViewClient()
         binding.webView.settings.javaScriptEnabled = true
+        binding.webView.settings.domStorageEnabled = true
         binding.webView.loadUrl("https://jambangspace.vercel.app/")
 
         // Agar Toolbar hide/show saat scroll web
