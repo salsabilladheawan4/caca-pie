@@ -14,6 +14,26 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Cacapie">
 
+        <!-- Perbaikan Nama Path DeveloperProfileActivity -->
+        <activity
+            android:name=".pertemuan_6.DeveloperProfileActivity"
+            android:exported="false" />
+
+        <!-- 1. SplashScreenActivity sekarang menjadi halaman utama (Launcher) -->
+        <activity
+            android:name=".pertemuan_6.SplashScreenActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- 2. AuthActivity (Halaman Login) -->
+        <activity
+            android:name=".pertemuan_6.AuthActivity"
+            android:exported="false" />
+
         <!-- Activity Kedua untuk Detail Snack -->
         <activity
             android:name=".pertemuan_3.DetailActivity"
@@ -35,12 +55,7 @@
         <!-- Activity Utama -->
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="false" />
 
     </application>
 
