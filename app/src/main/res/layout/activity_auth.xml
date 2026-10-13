@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FAF8F5"
@@ -9,48 +10,43 @@
     tools:context=".pertemuan_6.AuthActivity">
 
     <LinearLayout
-        android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:padding="24dp">
+        android:gravity="center_horizontal"
+        android:paddingHorizontal="24dp"
+        android:paddingVertical="32dp">
 
-        <!-- Logo dan Nama Cafe yang Lebih Proporsional -->
+        <!-- LOGO KAFE -->
         <ImageView
-            android:layout_width="72dp"
-            android:layout_height="72dp"
-            android:layout_marginTop="16dp"
-            android:adjustViewBounds="true"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginTop="24dp"
             android:contentDescription="Logo Jambang Cafe"
             android:src="@drawable/ic_logo_jambang" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Jambang Cafe"
-            android:textColor="#3B2314"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+        <!-- NAMA BRAND -->
+
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
             android:text="SPECIALTY COFFEE &amp; ROASTERY"
             android:textColor="#887566"
             android:textSize="10sp"
             android:letterSpacing="0.1" />
 
-        <!-- Bagian Judul Welcome Back -->
+        <!-- KONTENER TEKS & FORM DENGAN JARAK KIRI-KANAN YANG PAS -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginTop="36dp">
 
+            <!-- JUDUL WELCOME BACK -->
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Welcome Back,"
                 android:textColor="#3B2314"
@@ -58,33 +54,28 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="6dp"
                 android:text="Sign in to earn loyalty points and enjoy your personalized brews."
-                android:textColor="#7A685B"
+                android:textColor="#887566"
                 android:textSize="13sp" />
-        </LinearLayout>
 
-        <!-- Kotak Input Form (Username & Password) -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:orientation="vertical">
-
+            <!-- INPUT USERNAME -->
             <EditText
                 android:id="@+id/etUsername"
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
+                android:layout_marginTop="28dp"
                 android:background="@drawable/bg_rounded_input"
                 android:hint="Email or Phone Number"
-                android:inputType="textEmailAddress"
+                android:inputType="text"
                 android:paddingHorizontal="16dp"
                 android:textColor="#3B2314"
                 android:textColorHint="#A89F95"
                 android:textSize="14sp" />
 
+            <!-- INPUT PASSWORD -->
             <EditText
                 android:id="@+id/etPassword"
                 android:layout_width="match_parent"
@@ -97,48 +88,48 @@
                 android:textColor="#3B2314"
                 android:textColorHint="#A89F95"
                 android:textSize="14sp" />
+
+            <!-- TOMBOL SIGN IN -->
+            <Button
+                android:id="@+id/btnLogin"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="24dp"
+                android:backgroundTint="#8B4314"
+                android:text="Sign In →"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:cornerRadius="12dp" />
+
+            <!-- TOMBOL ALTERNATIF -->
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="12dp"
+                android:backgroundTint="#EFECE6"
+                android:text="Sign in with Face ID"
+                android:textAllCaps="false"
+                android:textColor="#3B2314"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:cornerRadius="12dp" />
+
         </LinearLayout>
 
-        <!-- Tombol Aksi Login -->
-        <Button
-            android:id="@+id/btnLogin"
-            android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:layout_marginTop="24dp"
-            android:backgroundTint="#8B4314"
-            android:text="Sign In →"
-            android:textAllCaps="false"
-            android:textColor="#FFFFFF"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            app:cornerRadius="12dp" />
-
-        <Button
-            android:id="@+id/btnFaceId"
-            android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:layout_marginTop="10dp"
-            android:backgroundTint="#EFECE6"
-            android:text="Sign in with Face ID"
-            android:textAllCaps="false"
-            android:textColor="#3B2314"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            app:cornerRadius="12dp" />
-
-        <!-- Tautan Daftar di Bagian Bawah -->
+        <!-- FOOTER SIGN UP -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:gravity="center"
+            android:layout_marginTop="28dp"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Don't have an account? "
-                android:textColor="#7A685B"
+                android:textColor="#887566"
                 android:textSize="13sp" />
 
             <TextView

@@ -23,21 +23,16 @@ class SplashScreenActivity : AppCompatActivity() {
             insets
         }
 
-        // Cek SharedPreferences untuk sesi login
         val sharedPref = getSharedPreferences("user_pref", MODE_PRIVATE)
         val isLogin = sharedPref.getBoolean("isLogin", false)
 
-        // Durasi diatur menjadi 2 detik (2000ms) agar pas sebagai loading screen yang cepat dan simpel
         lifecycleScope.launch {
             delay(2000)
 
-            // Percabangan alur aplikasi berdasarkan isLogin
             if (isLogin) {
-                // Jika sudah login, arahkan ke MainActivity
                 val intent = Intent(this@SplashScreenActivity, MainActivity::class.java)
                 startActivity(intent)
             } else {
-                // Jika belum login, arahkan ke AuthActivity (Halaman Login)
                 val intent = Intent(this@SplashScreenActivity, AuthActivity::class.java)
                 startActivity(intent)
             }

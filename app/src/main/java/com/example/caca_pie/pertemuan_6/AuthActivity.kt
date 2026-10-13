@@ -30,16 +30,13 @@ class AuthActivity : AppCompatActivity() {
         val etPassword = findViewById<EditText>(R.id.etPassword)
         val btnLogin = findViewById<Button>(R.id.btnLogin)
 
-        // Inisialisasi SharedPreferences
         val sharedPref = getSharedPreferences("user_pref", MODE_PRIVATE)
 
         btnLogin.setOnClickListener {
             val username = etUsername.text.toString().trim()
             val password = etPassword.text.toString().trim()
 
-            // Validasi: Jika username sama dengan password dan tidak kosong
             if (username.isNotEmpty() && username == password) {
-                // Simpan status isLogin bernilai true ke SharedPreferences
                 val editor = sharedPref.edit()
                 editor.putBoolean("isLogin", true)
                 editor.putString("username", username)
@@ -47,13 +44,11 @@ class AuthActivity : AppCompatActivity() {
 
                 Toast.makeText(this, "Login Berhasil", Toast.LENGTH_SHORT).show()
 
-                // Pindah ke MainActivity dan bersihkan back stack
                 val intent = Intent(this, MainActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(intent)
                 finish()
             } else {
-                // Jika gagal, tampilkan AlertDialog konfirmasi
                 AlertDialog.Builder(this)
                     .setTitle("Login Gagal")
                     .setMessage("Silahkan coba lagi, pastikan username dan password sesuai.")
