@@ -99,14 +99,14 @@
                         android:textSize="10sp" />
                 </LinearLayout>
 
-                <!-- Deskripsi Singkat -->
+                <!-- Deskripsi & Hobi / Kekuatan -->
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="14dp"
                     android:gravity="center"
                     android:lineSpacingExtra="4dp"
-                    android:text="Passionate software developer crafting high-performance mobile apps, modern web experiences, and scalable cloud systems with deep focus on minimalist UI/UX design."
+                    android:text="Passionate software developer crafting mobile apps &amp; web experiences. Hobi: Jajan 🧋 | Kekuatan Terbesar: Problem solving &amp; logika pemrograman."
                     android:textColor="#665548"
                     android:textSize="11.5sp" />
 
@@ -206,6 +206,49 @@
             android:textColor="#887566"
             android:textSize="10.5sp"
             android:textStyle="bold" />
+
+        <!-- Kartu Instagram -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginBottom="8dp"
+            app:cardBackgroundColor="#FFFFFF"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="14dp">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Instagram"
+                        android:textColor="#3B2314"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="\@salsabilladheawan"
+                        android:textColor="#887566"
+                        android:textSize="11.5sp" />
+                </LinearLayout>
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:contentDescription="Buka"
+                    android:src="@android:drawable/ic_menu_send"
+                    app:tint="#8B4314" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
         <!-- Kartu GitHub -->
         <androidx.cardview.widget.CardView
