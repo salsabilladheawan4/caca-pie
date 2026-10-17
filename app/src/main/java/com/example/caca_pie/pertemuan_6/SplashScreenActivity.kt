@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
-import com.example.caca_pie.MainActivity
+import com.example.caca_pie.BaseActivity
 import com.example.caca_pie.R
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -30,7 +30,7 @@ class SplashScreenActivity : AppCompatActivity() {
             delay(2000)
 
             if (isLogin) {
-                val intent = Intent(this@SplashScreenActivity, MainActivity::class.java)
+                val intent = Intent(this@SplashScreenActivity, BaseActivity::class.java)
                 startActivity(intent)
             } else {
                 val intent = Intent(this@SplashScreenActivity, AuthActivity::class.java)

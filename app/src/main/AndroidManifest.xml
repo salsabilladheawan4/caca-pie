@@ -52,6 +52,11 @@
             android:exported="false"
             android:parentActivityName=".MainActivity" />
 
+        <!-- Pertemuan 7: BaseActivity dengan BottomNavigation -->
+        <activity
+            android:name=".BaseActivity"
+            android:exported="false" />
+
         <!-- Activity Utama -->
         <activity
             android:name=".MainActivity"
