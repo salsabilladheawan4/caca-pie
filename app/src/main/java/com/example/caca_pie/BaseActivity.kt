@@ -33,21 +33,33 @@ class BaseActivity : AppCompatActivity() {
         replaceFragment(HomeFragment())
 
         // Listener untuk setiap item BottomNavigation
-        binding.bottomNav.setOnItemSelectedListener { item ->
+        binding.bottomNavView.setOnItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.nav_home     -> replaceFragment(HomeFragment())
-                R.id.nav_cart     -> replaceFragment(CartFragment())
-                R.id.nav_favorite -> replaceFragment(FavoriteFragment())
-                R.id.nav_profile  -> replaceFragment(ProfileFragment())
+                R.id.nav_home     -> {
+                    replaceFragment(HomeFragment())
+                    true
+                }
+                R.id.nav_cart     -> {
+                    replaceFragment(CartFragment())
+                    true
+                }
+                R.id.nav_favorite -> {
+                    replaceFragment(FavoriteFragment())
+                    true
+                }
+                R.id.nav_profile  -> {
+                    replaceFragment(ProfileFragment())
+                    true
+                }
+                else -> false
             }
-            true
         }
     }
 
     // Fungsi untuk mengganti fragment yang tampil
     private fun replaceFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
-            .replace(R.id.fragmentContainer, fragment)
+            .replace(binding.fragmentContainer.id, fragment)
             .commit()
     }
 }
