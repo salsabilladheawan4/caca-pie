@@ -11,6 +11,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.caca_pie.BaseActivity
 import com.example.caca_pie.MainActivity
 import com.example.caca_pie.RegisterActivity
 import com.example.caca_pie.R
@@ -55,7 +56,7 @@ class AuthActivity : AppCompatActivity() {
 
                 Toast.makeText(this, "Login Berhasil", Toast.LENGTH_SHORT).show()
 
-                val intent = Intent(this, MainActivity::class.java)
+                val intent = Intent(this, BaseActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(intent)
                 finish()

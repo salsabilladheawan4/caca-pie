@@ -24,20 +24,15 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, 0)
             insets
         }
-
-        // 1. Kartu Lihat Menu -> FifthActivity
         val cardLihatMenu = findViewById<CardView>(R.id.cardLihatMenu)
         cardLihatMenu.setOnClickListener {
             startActivity(Intent(this, FifthActivity::class.java))
         }
-
-        // 2. Kartu Kunjungi Website -> WebViewActivity
         val cardWebsite = findViewById<CardView>(R.id.cardWebsite)
         cardWebsite.setOnClickListener {
             startActivity(Intent(this, WebViewActivity::class.java))
         }
 
-        // 3. Kartu Developer -> DeveloperProfileActivity
         val cardDeveloper = findViewById<CardView>(R.id.cardDeveloper)
         cardDeveloper.setOnClickListener {
             startActivity(Intent(this, DeveloperProfileActivity::class.java))
