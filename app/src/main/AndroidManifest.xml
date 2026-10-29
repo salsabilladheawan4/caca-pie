@@ -39,24 +39,25 @@
         <activity
             android:name=".pertemuan_3.DetailActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".BaseActivity" />
 
         <!-- Pertemuan 5: Detail Jambang (Toolbar, Option Menu, Scroll) -->
         <activity
             android:name=".pertemuan_5.FifthActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".BaseActivity" />
 
         <!-- Pertemuan 5: WebView -->
         <activity
             android:name=".pertemuan_5.WebViewActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".BaseActivity" />
 
         <!-- Pertemuan 7: BaseActivity dengan BottomNavigation -->
         <activity
             android:name=".BaseActivity"
             android:exported="false" />
+
 
         <!-- Activity Utama -->
         <activity

@@ -35,6 +35,7 @@ class HomeFragment : Fragment() {
             startActivity(Intent(requireContext(), WebViewActivity::class.java))
         }
 
+
         // Kartu Logout
         view.findViewById<View>(R.id.cardLogout).setOnClickListener {
             AlertDialog.Builder(requireContext())

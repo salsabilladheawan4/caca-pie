@@ -33,4 +33,14 @@
     <string name="product_price">$20.99</string>
     <string name="btn_add_to_cart">Add to Cart</string>
     <string name="logo_desc">Logo Jambang</string>
+    <!-- Home Fragment -->
+    <string name="user_name_placeholder">Salsabilla Dheawan</string>
+    <string name="welcome_text">Selamat datang! ☕</string>
+    <string name="search_hint">Cari menu, layanan, website...</string>
+    <string name="menu_title">Menu Kami</string>
+    <string name="label_best_seller">TERLARIS</string>
+    <string name="label_online">ONLINE</string>
+    <string name="menu_item_website">Website</string>
+    <string name="logout_title">Logout</string>
+    <string name="logout_subtitle">Keluar dari akun →</string>
 </resources>

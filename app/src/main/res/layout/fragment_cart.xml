@@ -1,34 +1,320 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FAF8F5"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:padding="32dp">
+    android:background="#FAF8F5">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="🛒"
-        android:textSize="48sp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Keranjang Belanja"
-        android:textColor="#3B2314"
-        android:textSize="18sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+    <!-- 1. EMPTY STATE: Saat keranjang belanja masih kosong -->
+    <LinearLayout
+        android:id="@+id/layoutEmptyCart"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:gravity="center"
-        android:text="Belum ada item di keranjang.\nYuk, pilih menu favoritmu!"
-        android:textColor="#887566"
-        android:textSize="13sp" />
+        android:orientation="vertical"
+        android:padding="32dp"
+        android:visibility="visible">
 
-</LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="🛒"
+            android:textSize="54sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Keranjang Belanja Kosong"
+            android:textColor="#3B2314"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:lineSpacingExtra="4dp"
+            android:text="Belum ada item di keranjang.\nYuk, pilih kopi favoritmu di menu dan klik 'Add to Cart'!"
+            android:textColor="#887566"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+    <!-- 2. CONTENT STATE: Saat ada item di dalam keranjang -->
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/layoutContentCart"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="20dp"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:text="Keranjang Belanja 🛒"
+                android:textColor="#3B2314"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <!-- Kartu Item Produk di Keranjang -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="3dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <!-- Foto Kopi Bulat -->
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            app:cardCornerRadius="35dp"
+                            app:cardElevation="2dp">
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:contentDescription="Foto Velvet Cappuccino"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/img_cappuccino" />
+                        </androidx.cardview.widget.CardView>
+
+                        <!-- Detail Nama & Harga Satuan -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="14dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Velvet Cappuccino"
+                                android:textColor="#3B2314"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tvCartUnitPrice"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:text="$20.99 / cup"
+                                android:textColor="#887566"
+                                android:textSize="13sp" />
+                        </LinearLayout>
+
+                        <!-- Tombol Hapus (Icon Sampah) -->
+                        <ImageButton
+                            android:id="@+id/btnCartDelete"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:contentDescription="Hapus dari Keranjang"
+                            android:src="@android:drawable/ic_menu_delete"
+                            app:tint="#C0392B" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginVertical="12dp"
+                        android:background="#F0EBE5" />
+
+                    <!-- Pengatur Jumlah (Stepper) & Subtotal Item -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Jumlah Cup:"
+                            android:textColor="#3B2314"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <!-- Tombol Minus (-) -->
+                        <TextView
+                            android:id="@+id/btnCartMinus"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:background="@drawable/bg_rounded_input"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:gravity="center"
+                            android:text="−"
+                            android:textColor="#3B2314"
+                            android:textSize="18sp"
+                            android:elevation="1dp" />
+
+                        <!-- Teks Kuantitas -->
+                        <TextView
+                            android:id="@+id/tvCartQty"
+                            android:layout_width="40dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="1"
+                            android:textColor="#3B2314"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <!-- Tombol Plus (+) -->
+                        <TextView
+                            android:id="@+id/btnCartPlus"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:background="@drawable/bg_rounded_input"
+                            android:backgroundTint="#8B4314"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:gravity="center"
+                            android:text="+"
+                            android:textColor="#FFFFFF"
+                            android:textSize="18sp"
+                            android:elevation="2dp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Kartu Ringkasan Pembayaran (Order Summary) -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="3dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        android:text="Ringkasan Pembayaran"
+                        android:textColor="#3B2314"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <!-- Subtotal -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="6dp"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Subtotal Produk"
+                            android:textColor="#887566"
+                            android:textSize="13sp" />
+                        <TextView
+                            android:id="@+id/tvSummarySubtotal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="$20.99"
+                            android:textColor="#3B2314"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+
+                    <!-- Biaya Layanan -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Pajak Restoran (10%)"
+                            android:textColor="#887566"
+                            android:textSize="13sp" />
+                        <TextView
+                            android:id="@+id/tvSummaryTax"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="$2.10"
+                            android:textColor="#3B2314"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="#F0EBE5" />
+
+                    <!-- Total Bayar -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Total Pembayaran"
+                            android:textColor="#3B2314"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:id="@+id/tvSummaryTotal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="$23.09"
+                            android:textColor="#8B4314"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Tombol Checkout / Pesan Sekarang -->
+            <Button
+                android:id="@+id/btnCheckout"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_marginBottom="32dp"
+                android:backgroundTint="#8B4314"
+                android:text="Checkout Sekarang ☕"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:cornerRadius="16dp" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</FrameLayout>

@@ -12,117 +12,130 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:gravity="center_horizontal"
-        android:paddingHorizontal="24dp"
-        android:paddingVertical="32dp">
+        android:orientation="vertical"
+        android:paddingHorizontal="30dp"
+        android:paddingVertical="40dp">
 
         <!-- LOGO KAFE -->
-        <ImageView
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:layout_marginTop="24dp"
-            android:contentDescription="Logo Jambang Cafe"
-            android:src="@drawable/ic_logo_jambang" />
-
-        <!-- NAMA BRAND -->
-
+        <androidx.cardview.widget.CardView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="20dp"
+            app:cardCornerRadius="40dp"
+            app:cardElevation="4dp">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="Logo Jambang Cafe"
+                android:padding="12dp"
+                android:src="@drawable/ic_logo_jambang" />
+        </androidx.cardview.widget.CardView>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
+            android:layout_marginTop="16dp"
+            android:letterSpacing="0.2"
+            android:text="JAMBANG CAFE"
+            android:textColor="#3B2314"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:letterSpacing="0.1"
             android:text="SPECIALTY COFFEE &amp; ROASTERY"
             android:textColor="#887566"
-            android:textSize="10sp"
-            android:letterSpacing="0.1" />
+            android:textSize="11sp" />
 
-        <!-- KONTENER TEKS & FORM DENGAN JARAK KIRI-KANAN YANG PAS -->
+        <!-- FORM SECTION -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="36dp">
+            android:layout_marginTop="48dp"
+            android:orientation="vertical">
 
-            <!-- JUDUL WELCOME BACK -->
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Welcome Back,"
                 android:textColor="#3B2314"
-                android:textSize="24sp"
+                android:textSize="28sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:text="Sign in to earn loyalty points and enjoy your personalized brews."
+                android:layout_marginTop="8dp"
+                android:text="Sign in to enjoy your personalized brews and earn loyalty points."
                 android:textColor="#887566"
-                android:textSize="13sp" />
+                android:textSize="14sp"
+                android:lineSpacingExtra="4dp" />
 
-            <!-- INPUT USERNAME -->
             <EditText
                 android:id="@+id/etUsername"
                 android:layout_width="match_parent"
-                android:layout_height="52dp"
-                android:layout_marginTop="28dp"
+                android:layout_height="56dp"
+                android:layout_marginTop="36dp"
                 android:background="@drawable/bg_rounded_input"
-                android:hint="Email or Phone Number"
+                android:elevation="2dp"
+                android:hint="Username or Email"
                 android:inputType="text"
-                android:paddingHorizontal="16dp"
+                android:paddingHorizontal="20dp"
                 android:textColor="#3B2314"
                 android:textColorHint="#A89F95"
-                android:textSize="14sp" />
+                android:textSize="15sp" />
 
-            <!-- INPUT PASSWORD -->
             <EditText
                 android:id="@+id/etPassword"
                 android:layout_width="match_parent"
-                android:layout_height="52dp"
-                android:layout_marginTop="12dp"
+                android:layout_height="56dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/bg_rounded_input"
+                android:elevation="2dp"
                 android:hint="Password"
                 android:inputType="textPassword"
-                android:paddingHorizontal="16dp"
+                android:paddingHorizontal="20dp"
                 android:textColor="#3B2314"
                 android:textColorHint="#A89F95"
-                android:textSize="14sp" />
+                android:textSize="15sp" />
 
-            <!-- TOMBOL SIGN IN -->
             <Button
                 android:id="@+id/btnLogin"
                 android:layout_width="match_parent"
-                android:layout_height="52dp"
-                android:layout_marginTop="24dp"
+                android:layout_height="56dp"
+                android:layout_marginTop="32dp"
                 android:backgroundTint="#8B4314"
+                android:elevation="4dp"
                 android:text="Sign In →"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFF"
-                android:textSize="15sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
-                app:cornerRadius="12dp" />
+                app:cornerRadius="16dp" />
 
-            <!-- TOMBOL ALTERNATIF -->
             <Button
                 android:layout_width="match_parent"
-                android:layout_height="52dp"
-                android:layout_marginTop="12dp"
+                android:layout_height="56dp"
+                android:layout_marginTop="16dp"
                 android:backgroundTint="#EFECE6"
                 android:text="Sign in with Face ID"
                 android:textAllCaps="false"
                 android:textColor="#3B2314"
                 android:textSize="14sp"
                 android:textStyle="bold"
-                app:cornerRadius="12dp" />
+                app:cornerRadius="16dp" />
 
         </LinearLayout>
 
-        <!-- FOOTER SIGN UP -->
+        <!-- FOOTER -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="40dp"
             android:orientation="horizontal">
 
             <TextView
@@ -130,7 +143,7 @@
                 android:layout_height="wrap_content"
                 android:text="Don't have an account? "
                 android:textColor="#887566"
-                android:textSize="13sp" />
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/tvSignUp"
@@ -138,8 +151,10 @@
                 android:layout_height="wrap_content"
                 android:text="Sign Up"
                 android:textColor="#8B4314"
-                android:textSize="13sp"
-                android:textStyle="bold" />
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:clickable="true"
+                android:focusable="true" />
         </LinearLayout>
 
     </LinearLayout>
