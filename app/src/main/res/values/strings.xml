@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Jambang</string>
+    <string name="app_name">Jambang Space</string>
     <string name="btn_my_project">My Project</string>
     <string name="snack_title">Apple Pie Special</string>
     <string name="snack_nutrition">Kalori: 270 kkal\nLemak: 12g\nKarbohidrat: 35g\nProtein: 5g</string>
@@ -35,7 +35,7 @@
     <string name="logo_desc">Logo Jambang</string>
     <!-- Home Fragment -->
     <string name="user_name_placeholder">Salsabilla Dheawan</string>
-    <string name="welcome_text">Selamat datang! ☕</string>
+    <string name="welcome_text">Selamat datang!</string>
     <string name="search_hint">Cari menu, layanan, website...</string>
     <string name="menu_title">Menu Kami</string>
     <string name="label_best_seller">TERLARIS</string>

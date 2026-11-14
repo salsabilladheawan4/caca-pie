@@ -89,7 +89,7 @@ class CartFragment : Fragment() {
             val formattedTotal = String.format(Locale.US, "$%.2f", total)
 
             AlertDialog.Builder(requireContext())
-                .setTitle("Pesanan Berhasil Dibuat! ☕")
+                .setTitle("Pesanan Berhasil Dibuat")
                 .setMessage("Terima kasih! Pesanan Anda ($qty cup Velvet Cappuccino) dengan total $formattedTotal telah kami terima. Mohon tunggu barista menyiapkan pesanan Anda.")
                 .setPositiveButton("Selesai") { dialog, _ ->
                     // Kosongkan keranjang setelah checkout sukses

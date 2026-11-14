@@ -20,6 +20,7 @@
             android:background="#FAF8F5"
             app:layout_scrollFlags="scroll|enterAlways"
             app:navigationIcon="@drawable/ic_arrow_back"
+            app:navigationIconTint="#3B2314"
             app:title="Product Details"
             app:titleTextColor="#3B2314" />
     </com.google.android.material.appbar.AppBarLayout>
@@ -130,7 +131,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Serving Suggestion 🍨"
+                    android:text="Serving Suggestion"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     android:textColor="#3B2314"

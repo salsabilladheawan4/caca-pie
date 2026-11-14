@@ -15,11 +15,11 @@
         android:padding="32dp"
         android:visibility="visible">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="🛒"
-            android:textSize="54sp" />
+        <ImageView
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:src="@drawable/ic_nav_cart"
+            app:tint="#D4C8BC" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -58,7 +58,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                android:text="Keranjang Belanja 🛒"
+                android:text="Keranjang Belanja"
                 android:textColor="#3B2314"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -307,7 +307,7 @@
                 android:layout_height="54dp"
                 android:layout_marginBottom="32dp"
                 android:backgroundTint="#8B4314"
-                android:text="Checkout Sekarang ☕"
+                android:text="Checkout Sekarang"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFF"
                 android:textSize="15sp"
