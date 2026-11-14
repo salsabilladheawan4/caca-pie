@@ -78,7 +78,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="🎓 Politeknik Caltex Riau  •  Teknik Informatika"
+                        android:text="Politeknik Caltex Riau  •  Teknik Informatika"
                         android:textColor="#665548"
                         android:textSize="10sp" />
                 </LinearLayout>
@@ -90,7 +90,7 @@
                     android:layout_marginTop="14dp"
                     android:gravity="center"
                     android:lineSpacingExtra="4dp"
-                    android:text="Passionate software developer crafting mobile apps &amp; web experiences. Hobi: Jajan 🧋 | Kekuatan Terbesar: Problem solving &amp; logika pemrograman."
+                    android:text="Passionate software developer crafting mobile apps &amp; web experiences. Hobi: Jajan Kuliner | Kekuatan Terbesar: Problem solving &amp; logika pemrograman."
                     android:textColor="#665548"
                     android:textSize="11.5sp" />
 
@@ -179,6 +179,123 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
+        <!-- ACCOUNT & SETTINGS (Sesuai Figma) -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="12dp"
+            android:text="ACCOUNT &amp; SETTINGS"
+            android:textColor="#887566"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.1" />
+
+        <!-- Menu Order History (ListView CustomAdapter - Modul 10) -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardOrderHistory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginBottom="12dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
+            app:cardBackgroundColor="#FFFFFF"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="16dp">
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/ic_receipt"
+                    app:tint="#8B4314" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Order History"
+                        android:textColor="#3B2314"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Lihat daftar riwayat transaksi &amp; pesanan"
+                        android:textColor="#887566"
+                        android:textSize="12sp" />
+                </LinearLayout>
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_chevron_right"
+                    app:tint="#A89F95" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Menu Tutorial / Onboarding (ViewPager2 - Modul 11) -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardTutorial"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginBottom="12dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
+            app:cardBackgroundColor="#FFFFFF"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="16dp">
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/ic_help_outline"
+                    app:tint="#8B4314" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="App Onboarding &amp; Guide"
+                        android:textColor="#3B2314"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Buka kembali slide panduan Jambang Cafe"
+                        android:textColor="#887566"
+                        android:textSize="12sp" />
+                </LinearLayout>
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_chevron_right"
+                    app:tint="#A89F95" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
         <!-- SOCIALS -->
         <TextView
             android:layout_width="wrap_content"
@@ -198,6 +315,9 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="8dp"
             android:layout_marginBottom="12dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
             app:cardBackgroundColor="#FFFFFF"
             app:cardCornerRadius="16dp"
             app:cardElevation="2dp">
@@ -206,10 +326,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:padding="16dp"
-                android:background="?attr/selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true">
+                android:padding="16dp">
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
@@ -249,6 +366,9 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="8dp"
             android:layout_marginBottom="32dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
             app:cardBackgroundColor="#FFFFFF"
             app:cardCornerRadius="16dp"
             app:cardElevation="2dp">
@@ -257,10 +377,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:padding="16dp"
-                android:background="?attr/selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true">
+                android:padding="16dp">
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
