@@ -8,7 +8,7 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_logo_jambang"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -58,6 +58,17 @@
             android:name=".BaseActivity"
             android:exported="false" />
 
+
+        <!-- Pertemuan 10: OrderHistoryActivity (ListView dengan CustomAdapter) -->
+        <activity
+            android:name=".pertemuan_10.OrderHistoryActivity"
+            android:exported="false"
+            android:parentActivityName=".BaseActivity" />
+
+        <!-- Pertemuan 11: OnboardingActivity (ViewPager2 Onboard Screen) -->
+        <activity
+            android:name=".pertemuan_11.onboarding.OnboardingActivity"
+            android:exported="false" />
 
         <!-- Activity Utama -->
         <activity

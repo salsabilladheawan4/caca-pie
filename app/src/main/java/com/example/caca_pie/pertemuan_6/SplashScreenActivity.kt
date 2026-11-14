@@ -9,6 +9,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import com.example.caca_pie.BaseActivity
 import com.example.caca_pie.R
+import com.example.caca_pie.pertemuan_11.onboarding.OnboardingActivity
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -24,12 +25,16 @@ class SplashScreenActivity : AppCompatActivity() {
         }
 
         val sharedPref = getSharedPreferences("user_pref", MODE_PRIVATE)
+        val hasSeenOnboarding = sharedPref.getBoolean("has_seen_onboarding", false)
         val isLogin = sharedPref.getBoolean("isLogin", false)
 
         lifecycleScope.launch {
             delay(2000)
 
-            if (isLogin) {
+            if (!hasSeenOnboarding) {
+                val intent = Intent(this@SplashScreenActivity, OnboardingActivity::class.java)
+                startActivity(intent)
+            } else if (isLogin) {
                 val intent = Intent(this@SplashScreenActivity, BaseActivity::class.java)
                 startActivity(intent)
             } else {
