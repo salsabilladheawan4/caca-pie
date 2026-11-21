@@ -4,17 +4,25 @@ import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
+import com.example.caca_pie.data.model.MenuModel
 import com.example.caca_pie.databinding.ItemProductBinding
-import com.example.caca_pie.pertemuan_11.model.ProductModel
 
 class ProductAdapter(
-    private val productList: List<ProductModel>,
-    private val onItemClick: (ProductModel) -> Unit
+    private var productList: List<MenuModel>,
+    private val onItemClick: (MenuModel) -> Unit,
+    private val onEditClick: (MenuModel) -> Unit,
+    private val onDeleteClick: (MenuModel) -> Unit
 ) : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
 
     inner class ProductViewHolder(val binding: ItemProductBinding) :
         RecyclerView.ViewHolder(binding.root)
+
+    fun updateData(newList: List<MenuModel>) {
+        productList = newList
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         val binding = ItemProductBinding.inflate(
@@ -30,7 +38,7 @@ class ProductAdapter(
         with(holder.binding) {
             tvProductName.text = product.name
             tvProductPrice.text = product.price
-            imgProduct.setImageResource(product.imageRes)
+            imgProduct.setImageResource(product.toDrawableRes())
 
             if (product.tag.isNotEmpty()) {
                 tvTag.visibility = View.VISIBLE
@@ -49,6 +57,26 @@ class ProductAdapter(
 
             root.setOnClickListener {
                 onItemClick(product)
+            }
+
+            btnMenuMore.setOnClickListener { anchor ->
+                val popup = PopupMenu(anchor.context, anchor)
+                popup.menu.add(0, 1, 0, "Edit Menu")
+                popup.menu.add(0, 2, 1, "Hapus Menu")
+                popup.setOnMenuItemClickListener { item ->
+                    when (item.itemId) {
+                        1 -> {
+                            onEditClick(product)
+                            true
+                        }
+                        2 -> {
+                            onDeleteClick(product)
+                            true
+                        }
+                        else -> false
+                    }
+                }
+                popup.show()
             }
         }
     }
