@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.RadioButton
 import android.widget.RadioGroup
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -30,7 +31,7 @@ class RegisterActivity : AppCompatActivity() {
 
         val etNama = findViewById<EditText>(R.id.etNama)
         val etEmail = findViewById<EditText>(R.id.etEmail)
-        val btnTanggalLahir = findViewById<Button>(R.id.btnTanggalLahir)
+        val btnTanggalLahir = findViewById<TextView>(R.id.btnTanggalLahir)
         val rgJenisKelamin = findViewById<RadioGroup>(R.id.rgJenisKelamin)
         val etUsernameReg = findViewById<EditText>(R.id.etUsernameReg)
         val etPasswordReg = findViewById<EditText>(R.id.etPasswordReg)

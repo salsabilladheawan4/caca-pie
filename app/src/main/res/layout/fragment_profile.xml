@@ -365,7 +365,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="8dp"
-            android:layout_marginBottom="32dp"
+            android:layout_marginBottom="24dp"
             android:clickable="true"
             android:focusable="true"
             android:foreground="?attr/selectableItemBackground"
@@ -408,6 +408,103 @@
                     android:layout_height="20dp"
                     android:src="@drawable/ic_chevron_right"
                     app:tint="#A89F95" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- SEKSI AKUN PENGGUNA (SUPABASE) -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginBottom="12dp"
+            android:text="AKUN PENGGUNA"
+            android:textColor="#A89F95"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <!-- Info Akun yang sedang Login -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardAccountInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginBottom="12dp"
+            app:cardBackgroundColor="#FFFFFF"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="16dp">
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/ic_nav_profile"
+                    app:tint="#8B4314" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/tvAccountName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="User"
+                        android:textColor="#3B2314"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/tvAccountStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Terhubung ke Database Supabase"
+                        android:textColor="#4CAF50"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Tombol Logout -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardLogout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginBottom="32dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
+            app:cardBackgroundColor="#FFF5F5"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="16dp">
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/ic_logout" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Keluar / Logout"
+                    android:textColor="#D32F2F"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_chevron_right"
+                    app:tint="#D32F2F" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 

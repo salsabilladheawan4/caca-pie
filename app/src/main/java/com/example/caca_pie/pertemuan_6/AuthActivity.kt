@@ -11,10 +11,12 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
 import com.example.caca_pie.BaseActivity
-import com.example.caca_pie.MainActivity
-import com.example.caca_pie.RegisterActivity
 import com.example.caca_pie.R
+import com.example.caca_pie.RegisterActivity
+import com.example.caca_pie.data.api.SupabaseApiClient
+import kotlinx.coroutines.launch
 
 class AuthActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,7 +30,6 @@ class AuthActivity : AppCompatActivity() {
             insets
         }
 
-        // Inisialisasi komponen UI
         val etUsername = findViewById<EditText>(R.id.etUsername)
         val etPassword = findViewById<EditText>(R.id.etPassword)
         val btnLogin = findViewById<Button>(R.id.btnLogin)
@@ -45,29 +46,63 @@ class AuthActivity : AppCompatActivity() {
             val username = etUsername.text.toString().trim()
             val password = etPassword.text.toString().trim()
 
-            val spUsername = sharedPref.getString("username_reg", "")
-            val spPassword = sharedPref.getString("password_reg", "")
+            if (username.isEmpty() || password.isEmpty()) {
+                Toast.makeText(this, "Username dan Password tidak boleh kosong", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
 
-            if (username.isNotEmpty() && (username == password || (username == spUsername && password == spPassword && username.isNotEmpty()))) {
-                val editor = sharedPref.edit()
-                editor.putBoolean("isLogin", true)
-                editor.putString("username", username)
-                editor.apply()
+            btnLogin.isEnabled = false
+            btnLogin.text = "Memeriksa..."
 
-                Toast.makeText(this, "Login Berhasil", Toast.LENGTH_SHORT).show()
+            lifecycleScope.launch {
+                var authenticated = false
+                var displayName = username
 
-                val intent = Intent(this, BaseActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                startActivity(intent)
-                finish()
-            } else {
-                AlertDialog.Builder(this)
-                    .setTitle("Login Gagal")
-                    .setMessage("Username atau Password tidak cocok dengan sistem/SharedPreferences. Silahkan coba lagi.")
-                    .setPositiveButton("OK") { dialog, _ ->
-                        dialog.dismiss()
+                try {
+                    val response = SupabaseApiClient.apiService.loginUser(
+                        usernameFilter = "eq.$username",
+                        passwordFilter = "eq.$password"
+                    )
+                    if (response.isSuccessful && !response.body().isNullOrEmpty()) {
+                        val user = response.body()!!.first()
+                        authenticated = true
+                        displayName = user.nama.ifBlank { user.username }
                     }
-                    .show()
+                } catch (_: Exception) {
+                    // Fallback ke validasi lokal bila offline
+                }
+
+                if (!authenticated) {
+                    val spUsername = sharedPref.getString("username_reg", "")
+                    val spPassword = sharedPref.getString("password_reg", "")
+                    if (username == password || (username == spUsername && password == spPassword)) {
+                        authenticated = true
+                    }
+                }
+
+                btnLogin.isEnabled = true
+                btnLogin.text = "Login"
+
+                if (authenticated) {
+                    sharedPref.edit()
+                        .putBoolean("isLogin", true)
+                        .putString("username", username)
+                        .putString("nama", displayName)
+                        .apply()
+
+                    Toast.makeText(this@AuthActivity, "Login Berhasil", Toast.LENGTH_SHORT).show()
+
+                    val intent = Intent(this@AuthActivity, BaseActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(intent)
+                    finish()
+                } else {
+                    AlertDialog.Builder(this@AuthActivity)
+                        .setTitle("Login Gagal")
+                        .setMessage("Username atau Password tidak ditemukan. Silakan daftar terlebih dahulu atau periksa kembali akun Anda.")
+                        .setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
+                        .show()
+                }
             }
         }
     }
