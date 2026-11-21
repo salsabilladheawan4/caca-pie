@@ -8,7 +8,13 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
+import com.example.caca_pie.data.api.SupabaseApiClient
+import com.example.caca_pie.data.model.OrderModel
 import com.example.caca_pie.databinding.FragmentCartBinding
+import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.Date
 import java.util.Locale
 
 class CartFragment : Fragment() {
@@ -80,7 +86,7 @@ class CartFragment : Fragment() {
                 .show()
         }
 
-        // Tombol Checkout / Pesan Sekarang
+        // Tombol Checkout / Pesan Sekarang (Simpan otomatis ke tabel mobile.orders di Supabase)
         binding.btnCheckout.setOnClickListener {
             val qty = prefs.getInt("cart_cappuccino_qty", 1)
             val subtotal = qty * unitPrice
@@ -88,20 +94,40 @@ class CartFragment : Fragment() {
             val total = subtotal + tax
             val formattedTotal = String.format(Locale.US, "$%.2f", total)
 
-            AlertDialog.Builder(requireContext())
-                .setTitle("Pesanan Berhasil Dibuat")
-                .setMessage("Terima kasih! Pesanan Anda ($qty cup Velvet Cappuccino) dengan total $formattedTotal telah kami terima. Mohon tunggu barista menyiapkan pesanan Anda.")
-                .setPositiveButton("Selesai") { dialog, _ ->
-                    // Kosongkan keranjang setelah checkout sukses
-                    prefs.edit()
-                        .putBoolean("cart_has_cappuccino", false)
-                        .putInt("cart_cappuccino_qty", 0)
-                        .apply()
-                    updateCartUI()
-                    dialog.dismiss()
+            val orderCode = "#JB-${(8300..8999).random()}"
+            val nowStr = SimpleDateFormat("dd MMM yyyy • HH:mm 'WIB'", Locale.US).format(Date())
+            val newOrder = OrderModel(
+                orderId = orderCode,
+                date = nowStr,
+                itemsSummary = "${qty}x Velvet Cappuccino",
+                totalAmount = formattedTotal,
+                status = "Dalam Proses"
+            )
+
+            binding.btnCheckout.isEnabled = false
+            viewLifecycleOwner.lifecycleScope.launch {
+                try {
+                    SupabaseApiClient.apiService.createOrder(newOrder)
+                } catch (_: Exception) {
+                    // Tetap lanjut tampilkan konfirmasi bila sedang offline
                 }
-                .setCancelable(false)
-                .show()
+                if (_binding == null) return@launch
+                binding.btnCheckout.isEnabled = true
+
+                AlertDialog.Builder(requireContext())
+                    .setTitle("Pesanan Berhasil Dibuat")
+                    .setMessage("Terima kasih! Pesanan $orderCode ($qty cup Velvet Cappuccino) dengan total $formattedTotal telah tersimpan. Anda dapat melihatnya di menu Order History.")
+                    .setPositiveButton("Selesai") { dialog, _ ->
+                        prefs.edit()
+                            .putBoolean("cart_has_cappuccino", false)
+                            .putInt("cart_cappuccino_qty", 0)
+                            .apply()
+                        updateCartUI()
+                        dialog.dismiss()
+                    }
+                    .setCancelable(false)
+                    .show()
+            }
         }
     }
 

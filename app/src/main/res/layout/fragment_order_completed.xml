@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FAF8F5"
@@ -17,7 +16,27 @@
         android:textSize="11.5sp"
         android:textStyle="bold" />
 
-    <!-- ListView dengan CustomAdapter (Modul 10) -->
+    <ProgressBar
+        android:id="@+id/pbOrdersLoading"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:indeterminateTint="#8B4314"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tvEmptyOrders"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:gravity="center"
+        android:text="Belum ada pesanan selesai."
+        android:textColor="#887566"
+        android:textSize="14sp"
+        android:visibility="gone" />
+
+    <!-- ListView dengan CustomAdapter (Modul 10 & Data Supabase Modul 12) -->
     <ListView
         android:id="@+id/lvOrderHistory"
         android:layout_width="match_parent"
@@ -26,6 +45,6 @@
         android:divider="@null"
         android:dividerHeight="0dp"
         android:paddingTop="4dp"
-        android:paddingBottom="24dp" />
+        android:paddingBottom="88dp" />
 
 </LinearLayout>

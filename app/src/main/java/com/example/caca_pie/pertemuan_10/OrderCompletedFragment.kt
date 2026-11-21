@@ -6,14 +6,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
+import com.example.caca_pie.data.api.SupabaseApiClient
+import com.example.caca_pie.data.model.OrderModel
 import com.example.caca_pie.databinding.FragmentOrderCompletedBinding
 import com.example.caca_pie.pertemuan_10.adapter.OrderHistoryAdapter
-import com.example.caca_pie.pertemuan_10.model.OrderHistoryModel
+import kotlinx.coroutines.launch
 
 class OrderCompletedFragment : Fragment() {
 
     private var _binding: FragmentOrderCompletedBinding? = null
     private val binding get() = _binding!!
+
+    private lateinit var adapter: OrderHistoryAdapter
+    private val orders = mutableListOf<OrderModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,55 +33,66 @@ class OrderCompletedFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Data pesanan selesai untuk ListView dengan CustomAdapter (Modul 10)
-        val dummyOrders = listOf(
-            OrderHistoryModel(
-                orderId = "#JB-8201",
-                date = "12 Nov 2026 • 10:30 WIB",
-                itemsSummary = "1x Velvet Cappuccino, 1x Apple Pie Special",
-                totalAmount = "$45.99",
-                status = "Selesai"
-            ),
-            OrderHistoryModel(
-                orderId = "#JB-8195",
-                date = "10 Nov 2026 • 15:45 WIB",
-                itemsSummary = "2x Caramel Macchiato (Medium), 1x Croissant",
-                totalAmount = "$55.50",
-                status = "Selesai"
-            ),
-            OrderHistoryModel(
-                orderId = "#JB-8142",
-                date = "08 Nov 2026 • 09:15 WIB",
-                itemsSummary = "1x Americano (Cold), 1x Butter Croissant",
-                totalAmount = "$46.50",
-                status = "Selesai"
-            ),
-            OrderHistoryModel(
-                orderId = "#JB-8088",
-                date = "04 Nov 2026 • 16:20 WIB",
-                itemsSummary = "1x Spanish Latte, 1x Apple Pie Special",
-                totalAmount = "$69.00",
-                status = "Selesai"
-            ),
-            OrderHistoryModel(
-                orderId = "#JB-8012",
-                date = "01 Nov 2026 • 11:00 WIB",
-                itemsSummary = "1x Velvet Cappuccino (Large)",
-                totalAmount = "$20.99",
-                status = "Selesai"
-            )
+        adapter = OrderHistoryAdapter(
+            context = requireContext(),
+            orderList = orders,
+            onEditClick = { order ->
+                (activity as? OrderHistoryActivity)?.showOrderFormDialog(order)
+            },
+            onDeleteClick = { order ->
+                (activity as? OrderHistoryActivity)?.confirmDeleteOrder(order)
+            }
         )
-
-        val adapter = OrderHistoryAdapter(requireContext(), dummyOrders)
         binding.lvOrderHistory.adapter = adapter
 
         binding.lvOrderHistory.setOnItemClickListener { _, _, position, _ ->
-            val order = dummyOrders[position]
+            val order = orders[position]
             Toast.makeText(
                 requireContext(),
                 "Pesanan ${order.orderId} senilai ${order.totalAmount} (${order.status})",
                 Toast.LENGTH_SHORT
             ).show()
+        }
+
+        loadOrders()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        loadOrders()
+    }
+
+    fun loadOrders() {
+        if (_binding == null) return
+        binding.pbOrdersLoading.visibility = View.VISIBLE
+        binding.tvEmptyOrders.visibility = View.GONE
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            try {
+                val response = SupabaseApiClient.apiService.getOrders(statusFilter = "eq.Selesai")
+                if (_binding == null) return@launch
+
+                binding.pbOrdersLoading.visibility = View.GONE
+                if (response.isSuccessful) {
+                    val result = response.body() ?: emptyList()
+                    adapter.updateData(result)
+                    binding.tvEmptyOrders.visibility = if (result.isEmpty()) View.VISIBLE else View.GONE
+                } else {
+                    Toast.makeText(
+                        requireContext(),
+                        "Gagal memuat pesanan selesai (Kode ${response.code()})",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            } catch (e: Exception) {
+                if (_binding == null) return@launch
+                binding.pbOrdersLoading.visibility = View.GONE
+                Toast.makeText(
+                    requireContext(),
+                    "Gagal terhubung ke server: ${e.localizedMessage}",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
         }
     }
 
